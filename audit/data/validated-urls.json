@@ -1,0 +1,77 @@
+[
+  {
+    "site": "kr",
+    "requested": "https://beautyblossom.kr/107",
+    "url": "https://beautyblossom.kr/107",
+    "status": 404,
+    "canonical": null
+  },
+  {
+    "site": "cn",
+    "requested": "https://cn.beautyblossom.kr/107",
+    "url": "https://cn.beautyblossom.kr/107",
+    "status": 404,
+    "canonical": null
+  },
+  {
+    "site": "tw",
+    "requested": "https://tw.beautyblossom.kr/107",
+    "url": "https://tw.beautyblossom.kr/107",
+    "status": 404,
+    "canonical": null
+  },
+  {
+    "site": "kr",
+    "requested": "https://www.beautyblossom.kr/thread-lifting",
+    "url": "https://www.beautyblossom.kr/thread-lifting",
+    "status": 200,
+    "canonical": [
+      "https://beautyblossom.kr/thread-lifting"
+    ]
+  },
+  {
+    "site": "kr",
+    "requested": "https://beautyblossom.imweb.me/",
+    "url": "https://beautyblossom.imweb.me/",
+    "status": 200,
+    "canonical": [
+      "https://beautyblossom.kr/"
+    ]
+  },
+  {
+    "site": "en",
+    "requested": "https://eng-beautyblossom.imweb.me/",
+    "url": "https://eng-beautyblossom.imweb.me/",
+    "status": 200,
+    "canonical": [
+      "https://en.beautyblossom.kr/"
+    ]
+  },
+  {
+    "site": "jp",
+    "requested": "https://jp-beautyblossom.imweb.me/",
+    "url": "https://jp-beautyblossom.imweb.me/",
+    "status": 200,
+    "canonical": [
+      "https://jp.beautyblossom.kr/"
+    ]
+  },
+  {
+    "site": "cn",
+    "requested": "https://cn-beautyblossom.imweb.me/",
+    "url": "https://cn-beautyblossom.imweb.me/",
+    "status": 200,
+    "canonical": [
+      "https://cn.beautyblossom.kr/"
+    ]
+  },
+  {
+    "site": "tw",
+    "requested": "https://tw-beautyblossom.imweb.me/",
+    "url": "https://tw-beautyblossom.imweb.me/",
+    "status": 200,
+    "canonical": [
+      "https://tw.beautyblossom.kr/"
+    ]
+  }
+]
