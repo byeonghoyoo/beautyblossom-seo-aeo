@@ -24,6 +24,7 @@
 
 **Files:**
 - Modify: `README.md`
+- Create: `.github/pr-body.md`
 - Create: `docs/01-PRD.md`
 - Create: `docs/02-TECH-STACK.md`
 - Create: `docs/03-ARCHITECTURE.md`
@@ -46,13 +47,13 @@ Add at least seven `mermaid` blocks across README and `docs/*.md`, covering the 
 
 - [ ] **Step 3: Run the document checks**
 
-Run: `python -X utf8 -m unittest tests.test_repository.RepositoryTests.test_required_document_order tests.test_repository.RepositoryTests.test_visual_workflows_exist -v`
+Run: `python -X utf8 -c "from pathlib import Path; root=Path('.'); required=['docs/01-PRD.md','docs/02-TECH-STACK.md','docs/03-ARCHITECTURE.md','docs/04-WORKFLOW.md','docs/05-CLAUDE-CODE-INSTRUCTIONS.md','docs/06-REVIEW-LOG.md','docs/PROJECT-MAP.md']; marker=chr(96)*3+'mermaid'; assert all((root/p).is_file() for p in required); assert sum(p.read_text(encoding='utf-8').count(marker) for p in (root/'docs').glob('*.md')) >= 7; print('documents=7, mermaid>=7')"`
 
-Expected: 2 tests pass and 0 fail.
+Expected: `documents=7, mermaid>=7` and exit code 0.
 
 - [ ] **Step 4: Commit**
 
-Run: `git add README.md docs assets/README.md && git commit -m "docs: add plain-language project foundation"`
+Run: `git add README.md docs assets/README.md .github/pr-body.md && git commit -m "docs: add plain-language project foundation"`
 
 Expected: one documentation commit on `docs/project-foundation`.
 
@@ -69,6 +70,7 @@ Expected: one documentation commit on `docs/project-foundation`.
 - Create: `audit/data/source-evidence-manifest.csv`
 - Create: `audit/inventories/*.csv`
 - Create: `tools/prepare_repository_data.py`
+- Create: `tests/test_repository.py`
 
 **Interfaces:**
 - Consumes: Local read-only audit directory supplied as the first command argument.
@@ -82,13 +84,13 @@ Expected: JSON output reports 9 validated URLs and a nonzero manifest file count
 
 - [ ] **Step 2: Validate the audit counts and provenance**
 
-Run: `python -X utf8 -m unittest tests.test_repository.RepositoryTests.test_audit_counts tests.test_repository.RepositoryTests.test_validated_404_targets tests.test_repository.RepositoryTests.test_manifest_is_five_language_and_hashes_are_well_formed -v`
+Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`
 
-Expected: 3 tests pass and 0 fail.
+Expected: 8 tests pass and 0 fail.
 
 - [ ] **Step 3: Confirm raw HTML is absent**
 
-Run: `python -X utf8 -m unittest tests.test_repository.RepositoryTests.test_no_absolute_local_links_or_raw_html_archive -v`
+Run: `python -X utf8 -m unittest discover -s tests -k no_absolute_local_links_or_raw_html_archive -v`
 
 Expected: 1 test passes and 0 fail.
 
