@@ -39,7 +39,7 @@
 
 - [ ] **Step 2: 테스트가 실패하는지 확인합니다.**
 
-Run: `python -X utf8 -m unittest discover -s tests -p "test_repository.py" -k test_admin_backup_index -v`  
+Run: `python -X utf8 -m unittest discover -s tests -p "test_repository.py" -k test_admin_backup_index -v`<br>
 Expected: `admin-source-backup-index.csv`가 없어 FAIL
 
 - [ ] **Step 3: 빈 템플릿과 기준선 기록 안내서를 작성합니다.**
@@ -48,7 +48,7 @@ CSV에는 정의된 열 머리글만 넣고 추정 데이터를 만들지 않습
 
 - [ ] **Step 4: 전체 테스트를 실행합니다.**
 
-Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`  
+Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`<br>
 Expected: 모든 테스트 PASS
 
 - [ ] **Step 5: 독립 커밋으로 남깁니다.**
@@ -75,7 +75,7 @@ git commit -m "docs: add source backup and baseline templates"
 
 - [ ] **Step 2: 해당 테스트가 파일 부재로 실패하는지 확인합니다.**
 
-Run: `python -X utf8 -m unittest discover -s tests -p "test_repository.py" -k test_multilingual_page_map -v`  
+Run: `python -X utf8 -m unittest discover -s tests -p "test_repository.py" -k test_multilingual_page_map -v`<br>
 Expected: 대응표 또는 검증기 부재로 FAIL
 
 - [ ] **Step 3: 대응표와 읽기 전용 검증기를 작성합니다.**
@@ -84,9 +84,9 @@ Expected: 대응표 또는 검증기 부재로 FAIL
 
 - [ ] **Step 4: 소프웨이브 행과 전체 테스트를 검증합니다.**
 
-Run: `python -X utf8 tools/validate_page_map.py`  
-Expected: 검증된 소프웨이브 행 PASS, 미확정 행은 `pending`으로 보고  
-Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`  
+Run: `python -X utf8 tools/validate_page_map.py`<br>
+Expected: 검증된 소프웨이브 행 PASS, 미확정 행은 `pending`으로 보고<br>
+Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`<br>
 Expected: 모든 테스트 PASS
 
 - [ ] **Step 5: 독립 커밋으로 남깁니다.**
@@ -113,7 +113,7 @@ git commit -m "audit: add verified multilingual page map"
 
 - [ ] **Step 2: 후보표가 없어 테스트가 실패하는지 확인합니다.**
 
-Run: `python -X utf8 -m unittest discover -s tests -p "test_repository.py" -k test_title_fix_candidates -v`  
+Run: `python -X utf8 -m unittest discover -s tests -p "test_repository.py" -k test_title_fix_candidates -v`<br>
 Expected: 후보표 부재로 FAIL
 
 - [ ] **Step 3: 같은 위젯과 코드 형태를 원인별로 분류합니다.**
@@ -124,7 +124,7 @@ Expected: 후보표 부재로 FAIL
 
 제안서에는 원문과 변경안, 제거 대상 태그, 보존할 CSS·DOM·스크립트, 예상 영향과 복구 방법을 포함합니다.
 
-Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`  
+Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`<br>
 Expected: 모든 테스트 PASS
 
 - [ ] **Step 5: 독립 커밋으로 남깁니다.**
@@ -157,9 +157,9 @@ git commit -m "audit: group duplicate title fix candidates"
 
 - [ ] **Step 3: diff와 정적 검사를 실행합니다.**
 
-Run: `git diff --no-index -- changes/en-sofwave-107/before.txt changes/en-sofwave-107/proposed.txt`  
-Expected: 승인 대상 검색 정보 외 변경 없음  
-Run: `python -X utf8 -m py_compile tools/prepare_repository_data.py tools/validate_page_map.py`  
+Run: `git diff --no-index -- changes/en-sofwave-107/before.txt changes/en-sofwave-107/proposed.txt`<br>
+Expected: 승인 대상 검색 정보 외 변경 없음<br>
+Run: `python -X utf8 -m py_compile tools/prepare_repository_data.py tools/validate_page_map.py`<br>
 Expected: exit 0
 
 - [ ] **Step 4: 사용자 검토용 문서를 작성합니다.**
@@ -224,7 +224,7 @@ git commit -m "test: record English Sofwave pilot verification"
 
 - [ ] **Step 2: 테스트가 실패하는지 확인한 뒤 검토표를 작성합니다.**
 
-Run: `python -X utf8 -m unittest discover -s tests -p "test_repository.py" -k test_home_decision_requires_evidence -v`  
+Run: `python -X utf8 -m unittest discover -s tests -p "test_repository.py" -k test_home_decision_requires_evidence -v`<br>
 Expected: 파일 부재 또는 근거 없는 승인 상태로 FAIL
 
 - [ ] **Step 3: 5개 언어의 결정 자료를 채웁니다.**
@@ -237,7 +237,7 @@ Expected: 파일 부재 또는 근거 없는 승인 상태로 FAIL
 
 - [ ] **Step 5: 전체 테스트 후 커밋합니다.**
 
-Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`  
+Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`<br>
 Expected: 모든 테스트 PASS
 
 ```bash
@@ -263,7 +263,7 @@ git commit -m "audit: add home and metadata decision records"
 
 - [ ] **Step 2: 테스트가 실패하는지 확인합니다.**
 
-Run: `python -X utf8 -m unittest discover -s tests -p "test_repository.py" -k test_image_candidates_require_evidence -v`  
+Run: `python -X utf8 -m unittest discover -s tests -p "test_repository.py" -k test_image_candidates_require_evidence -v`<br>
 Expected: 후보표 부재로 FAIL
 
 - [ ] **Step 3: 구조화 데이터와 이미지 표를 따로 작성합니다.**
@@ -272,7 +272,7 @@ Expected: 후보표 부재로 FAIL
 
 - [ ] **Step 4: 전체 테스트를 실행합니다.**
 
-Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`  
+Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`<br>
 Expected: 모든 테스트 PASS
 
 - [ ] **Step 5: 독립 커밋으로 남깁니다.**
@@ -294,21 +294,21 @@ git commit -m "audit: separate schema and image evidence reviews"
 
 - [ ] **Step 1: 문서 링크와 자리표시자를 검사합니다.**
 
-Run: `rg -n "TBD|TODO|implement later|fill in details" docs audit changes tools tests`  
+Run: `rg -n "TBD|TODO|implement later|fill in details" docs audit changes tools tests`<br>
 Expected: 실행 계획의 설명 문구 외 미완성 자리표시자 0건
 
 - [ ] **Step 2: Python과 저장소 테스트를 실행합니다.**
 
-Run: `python -X utf8 -m compileall -q tools tests`  
-Expected: exit 0  
-Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`  
+Run: `python -X utf8 -m compileall -q tools tests`<br>
+Expected: exit 0<br>
+Run: `python -X utf8 -W error::ResourceWarning -m unittest discover -s tests -v`<br>
 Expected: 모든 테스트 PASS
 
 - [ ] **Step 3: 변경 내용과 민감정보를 검사합니다.**
 
-Run: `git diff --check origin/main...HEAD`  
-Expected: 출력 없음, exit 0  
-Run: `git grep -I -n -E "gho_[A-Za-z0-9_]+|BEGIN PRIVATE KEY|api[ _-]?key|password" HEAD -- . ':(exclude)docs/superpowers/plans/**'`  
+Run: `git diff --check origin/main...HEAD`<br>
+Expected: 출력 없음, exit 0<br>
+Run: `git grep -I -n -E "gho_[A-Za-z0-9_]+|BEGIN PRIVATE KEY|api[ _-]?key|password" HEAD -- . ':(exclude)docs/superpowers/plans/**'`<br>
 Expected: 실제 비밀정보 일치 0건
 
 - [ ] **Step 4: 실행 준비 보고서를 작성합니다.**
