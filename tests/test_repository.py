@@ -20,6 +20,7 @@ def read_csv(relative: str):
 class RepositoryTests(unittest.TestCase):
     def test_required_document_order(self):
         required = [
+            "docs/00-PROJECT-BRIEF-KO.md",
             "docs/01-PRD.md",
             "docs/02-TECH-STACK.md",
             "docs/03-ARCHITECTURE.md",
@@ -27,8 +28,24 @@ class RepositoryTests(unittest.TestCase):
             "docs/05-CLAUDE-CODE-INSTRUCTIONS.md",
             "docs/06-REVIEW-LOG.md",
             "docs/PROJECT-MAP.md",
+            "docs/superpowers/plans/2026-09-05-seo-aeo-roadmap.md",
         ]
         self.assertTrue(all((ROOT / path).is_file() for path in required))
+
+    def test_project_brief_matches_audited_facts(self):
+        report = (ROOT / "docs/00-PROJECT-BRIEF-KO.md").read_text(encoding="utf-8")
+        summary = read_json("audit/data/summary.json")
+        required_numbers = [
+            summary["requested_urls"],
+            summary["unique_internal_html_final_urls"],
+            summary["multiple_title_pages"],
+            summary["additional_title_elements"],
+            summary["distinct_inline_js_fragments"],
+        ]
+        for number in required_numbers:
+            self.assertIn(f"{number:,}", report)
+        self.assertGreaterEqual(report.count("```mermaid"), 4)
+        self.assertIn("태국어 사이트는 이번 단계에 포함하지 않습니다", report)
 
     def test_audit_counts(self):
         summary = read_json("audit/data/summary.json")

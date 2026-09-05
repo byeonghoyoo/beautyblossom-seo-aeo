@@ -17,13 +17,14 @@ flowchart LR
 
 ## 먼저 읽을 문서
 
-1. [목표와 원칙](docs/01-PRD.md)
-2. [사용 도구](docs/02-TECH-STACK.md)
-3. [자료와 작업 구조](docs/03-ARCHITECTURE.md)
-4. [전체 작업 순서](docs/04-WORKFLOW.md)
-5. [Claude Code 작업 지시](docs/05-CLAUDE-CODE-INSTRUCTIONS.md)
-6. [검수 기록](docs/06-REVIEW-LOG.md)
-7. [그림으로 보는 프로젝트](docs/PROJECT-MAP.md)
+1. [통합 기획 보고서](docs/00-PROJECT-BRIEF-KO.md)
+2. [목표와 원칙](docs/01-PRD.md)
+3. [사용 도구](docs/02-TECH-STACK.md)
+4. [자료와 작업 구조](docs/03-ARCHITECTURE.md)
+5. [전체 작업 순서](docs/04-WORKFLOW.md)
+6. [Claude Code 작업 지시](docs/05-CLAUDE-CODE-INSTRUCTIONS.md)
+7. [검수 기록](docs/06-REVIEW-LOG.md)
+8. [그림으로 보는 프로젝트](docs/PROJECT-MAP.md)
 
 ## 현재까지 확인한 핵심 사실
 
