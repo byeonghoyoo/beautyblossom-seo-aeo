@@ -1,0 +1,72 @@
+{
+  "observed_date_local": "2026-09-05",
+  "method": "Authenticated administrator UI reads and public rendered DOM reads using Codex browser. No save, publish or permission changes.",
+  "scope": ["kr", "en", "jp", "cn", "tw"],
+  "root_rendered_hreflang_counts": {"kr": 0, "en": 7, "jp": 7, "cn": 7, "tw": 0},
+  "administrator_menu_node_counts": {"kr": 125, "en": 124, "jp": 125, "cn": 128, "tw": 125},
+  "menu_count_caveat": "Includes folders/categories/system/global/modal nodes. Not a count of published pages.",
+  "common_code_fields": ["robots", "llms", "header_top", "header", "body", "footer"],
+  "common_code_char_counts": {
+    "kr": [610, 71, 1635, 1817, 61907, 7446],
+    "en": [145, 71, 549, 17602, 61345, 6772],
+    "jp": [408, 71, 18133, 58284, 633, 7254],
+    "cn": [305, 71, 18061, 57580, 633, 12115],
+    "tw": [408, 71, 17212, 57437, 633, 12115]
+  },
+  "common_code_line_counts": {
+    "kr": [34, 4, 37, 18, 1030, 301],
+    "en": [7, 4, 25, 521, 609, 269],
+    "jp": [20, 4, 538, 484, 45, 294],
+    "cn": [15, 4, 538, 421, 45, 414],
+    "tw": [21, 4, 516, 413, 45, 414]
+  },
+  "common_original_storage_caveat": "Full fields were read from editor selections. This JSON stores metrics and observations, not a complete restore-ready original-code backup.",
+  "hreflang_generator_locations": [
+    {"site": "en", "field": "Header Code", "first_line": 500, "last_line": 521},
+    {"site": "jp", "field": "Header Top Code", "first_line": 517, "last_line": 538},
+    {"site": "cn", "field": "Header Top Code", "first_line": 517, "last_line": 538}
+  ],
+  "en_sofwave_rendered": {
+    "url": "https://en.beautyblossom.kr/107",
+    "canonical": "https://en.beautyblossom.kr/107",
+    "titles": [
+      {"parent": "HEAD", "text": "Sofwave in Hongdae, Seoul | Ultrasound Skin Tightening | Beauty Blossom Clinic"},
+      {"parent": "DIV", "text": "시술 전후 비교"}
+    ],
+    "hreflang": [
+      {"lang": "ko", "href": "https://beautyblossom.kr/107", "parent": "HEAD"},
+      {"lang": "en", "href": "https://en.beautyblossom.kr/107", "parent": "HEAD"},
+      {"lang": "ja", "href": "https://jp.beautyblossom.kr/107", "parent": "HEAD"},
+      {"lang": "zh-CN", "href": "https://cn.beautyblossom.kr/107", "parent": "HEAD"},
+      {"lang": "zh-TW", "href": "https://tw.beautyblossom.kr/107", "parent": "HEAD"},
+      {"lang": "th", "href": "https://www.beautyblossomth.kr/", "parent": "HEAD"},
+      {"lang": "x-default", "href": "https://beautyblossom.kr/107", "parent": "HEAD"}
+    ]
+  },
+  "en_thread_lifting_rendered": {
+    "url": "https://en.beautyblossom.kr/thread-lifting",
+    "title_count": 2,
+    "head_hreflang_count": 7,
+    "div_hreflang_count": 6,
+    "x_default": [
+      {"parent": "HEAD", "href": "https://beautyblossom.kr/thread-lifting"},
+      {"parent": "DIV", "href": "https://en.beautyblossom.kr/thread-lifting"}
+    ],
+    "ko": [
+      {"parent": "HEAD", "href": "https://beautyblossom.kr/thread-lifting"},
+      {"parent": "DIV", "href": "https://www.beautyblossom.kr/thread-lifting"}
+    ]
+  },
+  "kr_botox_rendered": {
+    "url": "https://beautyblossom.kr/28",
+    "titles": [
+      {"parent": "HEAD", "text": "홍대 보톡스 | 홍대 스킨보톡스 | 뷰티블라썸의원"},
+      {"parent": "DIV", "text": "보톡스 시술 부위"}
+    ]
+  },
+  "en_description": {
+    "administrator": "Beauty Blossom Clinic is a global dermatology clinic in Hongdae & Hapjeong, Seoul, offering Botox, fillers, lifting treatments, skin care, skin boosters, and body contouring. Our experienced medical team provides attentive care from consultation to post-treatment follow-up, prioritizing safety and delivering natural results. Learn more today.",
+    "rendered": "Beauty Blossom Clinic is a global dermatology clinic in Hongdae & Hapjeong, Seoul, offering Botox, fillers, lifting treatments, skin care, skin boosters, and body contouring. Our experienced medical team provides attentive care from consultation to post-treatment follow-up, prioritizing safety and delivering natural re... ",
+    "diagnosis_limit": "Input/output difference verified. Exact internal truncation implementation and configured output limit not verified. Not a Google search snippet observation."
+  }
+}

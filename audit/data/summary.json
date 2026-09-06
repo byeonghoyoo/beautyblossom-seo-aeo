@@ -1,0 +1,163 @@
+{
+  "scope": [
+    "kr",
+    "en",
+    "jp",
+    "cn",
+    "tw"
+  ],
+  "excluded_language": "th",
+  "requested_urls": 530,
+  "internal_html_responses": 517,
+  "unique_internal_html_final_urls": 479,
+  "excluded_responses": 13,
+  "duplicate_final_url_responses": 38,
+  "multiple_title_pages": 77,
+  "additional_title_elements": 143,
+  "rendered_code_occurrences": 1976,
+  "distinct_rendered_code_fragments": 1496,
+  "distinct_inline_js_fragments": 1470,
+  "schema_types_recursive": {
+    "ItemList": 479,
+    "ListItem": 3418,
+    "Product": 2971,
+    "Organization": 484,
+    "PostalAddress": 650,
+    "ImageObject": 1893,
+    "FAQPage": 183,
+    "Question": 955,
+    "Answer": 955,
+    "MedicalProcedure": 187,
+    "MedicalBusiness": 171,
+    "BreadcrumbList": 153,
+    "VideoObject": 14,
+    "MedicalWebPage": 9,
+    "MedicalAudience": 5,
+    "Drug": 5,
+    "MedicalClinic": 4
+  },
+  "by_site": {
+    "kr": {
+      "requested_urls": 106,
+      "internal_html_responses": 103,
+      "unique_internal_html_final_urls": 97,
+      "multiple_title_pages": 18,
+      "source_hreflang_pages": 0,
+      "jsonld_parse_errors": 0,
+      "rendered_code_occurrences": 431
+    },
+    "en": {
+      "requested_urls": 106,
+      "internal_html_responses": 103,
+      "unique_internal_html_final_urls": 94,
+      "multiple_title_pages": 16,
+      "source_hreflang_pages": 1,
+      "jsonld_parse_errors": 0,
+      "rendered_code_occurrences": 435
+    },
+    "jp": {
+      "requested_urls": 107,
+      "internal_html_responses": 104,
+      "unique_internal_html_final_urls": 97,
+      "multiple_title_pages": 16,
+      "source_hreflang_pages": 1,
+      "jsonld_parse_errors": 0,
+      "rendered_code_occurrences": 372
+    },
+    "cn": {
+      "requested_urls": 108,
+      "internal_html_responses": 106,
+      "unique_internal_html_final_urls": 98,
+      "multiple_title_pages": 16,
+      "source_hreflang_pages": 1,
+      "jsonld_parse_errors": 0,
+      "rendered_code_occurrences": 373
+    },
+    "tw": {
+      "requested_urls": 103,
+      "internal_html_responses": 101,
+      "unique_internal_html_final_urls": 93,
+      "multiple_title_pages": 11,
+      "source_hreflang_pages": 1,
+      "jsonld_parse_errors": 0,
+      "rendered_code_occurrences": 365
+    }
+  },
+  "home_comparison": [
+    {
+      "site": "kr",
+      "root": "https://beautyblossom.kr/",
+      "home": "https://beautyblossom.kr/home",
+      "root_canonical": [
+        "https://beautyblossom.kr/"
+      ],
+      "home_canonical": [
+        "https://beautyblossom.kr/home"
+      ],
+      "same_primary_title": true,
+      "same_widget_id_type_text_sequence": true,
+      "root_widgets": 84,
+      "home_widgets": 84
+    },
+    {
+      "site": "en",
+      "root": "https://en.beautyblossom.kr/",
+      "home": "https://en.beautyblossom.kr/home",
+      "root_canonical": [
+        "https://en.beautyblossom.kr/"
+      ],
+      "home_canonical": [
+        "https://en.beautyblossom.kr/home"
+      ],
+      "same_primary_title": true,
+      "same_widget_id_type_text_sequence": true,
+      "root_widgets": 81,
+      "home_widgets": 81
+    },
+    {
+      "site": "jp",
+      "root": "https://jp.beautyblossom.kr/",
+      "home": "https://jp.beautyblossom.kr/home",
+      "root_canonical": [
+        "https://jp.beautyblossom.kr/"
+      ],
+      "home_canonical": [
+        "https://jp.beautyblossom.kr/home"
+      ],
+      "same_primary_title": true,
+      "same_widget_id_type_text_sequence": true,
+      "root_widgets": 86,
+      "home_widgets": 86
+    },
+    {
+      "site": "cn",
+      "root": "https://cn.beautyblossom.kr/",
+      "home": "https://cn.beautyblossom.kr/home",
+      "root_canonical": [
+        "https://cn.beautyblossom.kr/"
+      ],
+      "home_canonical": [
+        "https://cn.beautyblossom.kr/home"
+      ],
+      "same_primary_title": true,
+      "same_widget_id_type_text_sequence": true,
+      "root_widgets": 85,
+      "home_widgets": 85
+    },
+    {
+      "site": "tw",
+      "root": "https://tw.beautyblossom.kr/",
+      "home": "https://tw.beautyblossom.kr/home",
+      "root_canonical": [
+        "https://tw.beautyblossom.kr/"
+      ],
+      "home_canonical": [
+        "https://tw.beautyblossom.kr/home"
+      ],
+      "same_primary_title": true,
+      "same_widget_id_type_text_sequence": true,
+      "root_widgets": 84,
+      "home_widgets": 84
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+"""Verify that the planning repository matches the audited facts."""
+from pathlib import Path
+import csv
+import json
+import re
+import unittest
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def read_json(relative: str):
+    return json.loads((ROOT / relative).read_text(encoding="utf-8"))
+
+
+def read_csv(relative: str):
+    with (ROOT / relative).open(encoding="utf-8-sig", newline="") as stream:
+        return list(csv.DictReader(stream))
+
+
+class RepositoryTests(unittest.TestCase):
+    def test_required_document_order(self):
+        required = [
+            "docs/00-PROJECT-BRIEF-KO.md",
+            "docs/01-PRD.md",
+            "docs/02-TECH-STACK.md",
+            "docs/03-ARCHITECTURE.md",
+            "docs/04-WORKFLOW.md",
+            "docs/05-CLAUDE-CODE-INSTRUCTIONS.md",
+            "docs/06-REVIEW-LOG.md",
+            "docs/PROJECT-MAP.md",
+            "docs/superpowers/plans/2026-09-05-seo-aeo-roadmap.md",
+        ]
+        self.assertTrue(all((ROOT / path).is_file() for path in required))
+
+    def test_project_brief_matches_audited_facts(self):
+        report = (ROOT / "docs/00-PROJECT-BRIEF-KO.md").read_text(encoding="utf-8")
+        summary = read_json("audit/data/summary.json")
+        required_numbers = [
+            summary["requested_urls"],
+            summary["unique_internal_html_final_urls"],
+            summary["multiple_title_pages"],
+            summary["additional_title_elements"],
+            summary["distinct_inline_js_fragments"],
+        ]
+        for number in required_numbers:
+            self.assertIn(f"{number:,}", report)
+        self.assertGreaterEqual(report.count("```mermaid"), 4)
+        self.assertIn("태국어 사이트는 이번 단계에 포함하지 않습니다", report)
+
+    def test_audit_counts(self):
+        summary = read_json("audit/data/summary.json")
+        pages = read_csv("audit/inventories/page-inventory.csv")
+        titles = read_csv("audit/inventories/title-locations.csv")
+        self.assertEqual(summary["requested_urls"], 530)
+        self.assertEqual(summary["unique_internal_html_final_urls"], 479)
+        self.assertEqual(summary["multiple_title_pages"], 77)
+        self.assertEqual(summary["additional_title_elements"], 143)
+        self.assertEqual(len(pages), 479)
+        self.assertEqual(len(titles), 143)
+        self.assertEqual({row["site"] for row in pages}, {"kr", "en", "jp", "cn", "tw"})
+
+    def test_validated_404_targets(self):
+        records = read_json("audit/data/validated-urls.json")
+        failures = [row for row in records if row["requested"].endswith("/107")]
+        self.assertEqual(len(failures), 3)
+        self.assertTrue(all(row["status"] == 404 for row in failures))
+
+    def test_title_classification_preserves_source_rows(self):
+        classified = read_csv("audit/inventories/title-cause-classification.csv")
+        original = read_csv("audit/inventories/title-locations.csv")
+        key = lambda row: (row["site"], row["url"], row["widget_id"], row["title"])
+        self.assertEqual(len(classified), len(original))
+        self.assertEqual(sorted(map(key, classified)), sorted(map(key, original)))
+        self.assertEqual(len({(r["site"], r["widget_id"]) for r in classified}), 143)
+        self.assertEqual(len({r["url"] for r in classified}), 77)
+        for row in classified:
+            flags = [row[k] for k in ("doctype", "html_open", "head_open", "body_open")]
+            self.assertTrue(all(value in {"true", "false"} for value in flags))
+            expected = ("document_bundle" if all(v == "true" for v in flags)
+                        else "partial_document" if any(v == "true" for v in flags)
+                        else "title_fragment")
+            self.assertEqual(row["shape"], expected)
+
+    def test_title_classification_points_to_existing_evidence(self):
+        widgets = {(r["site"], r["url"], r["widget_id"]): r
+                   for r in read_csv("audit/inventories/code-widget-inventory.csv")}
+        manifest = {r["relative_path"].replace("\\", "/"): r
+                    for r in read_csv("audit/data/source-evidence-manifest.csv")}
+        for row in read_csv("audit/inventories/title-cause-classification.csv"):
+            widget = widgets[(row["site"], row["url"], row["widget_id"])]
+            self.assertEqual(row["rendered_sha256"], widget["sha256"])
+            self.assertEqual(row["source_archive_sha256"], manifest[row["evidence"]]["sha256"])
+
+    def test_javascript_result_is_described_as_syntax_only(self):
+        result = read_json("audit/data/javascript-syntax-check.json")
+        self.assertEqual(result["checked"], 1470)
+        self.assertEqual(result["failures"], [])
+        self.assertIn("no execution", result["mode"])
+
+    def test_visual_workflows_exist(self):
+        markdown = "\n".join(path.read_text(encoding="utf-8") for path in (ROOT / "docs").glob("*.md"))
+        self.assertGreaterEqual(markdown.count("```mermaid"), 7)
+
+    def test_relative_markdown_links_exist(self):
+        pattern = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+        for document in ROOT.rglob("*.md"):
+            for target in pattern.findall(document.read_text(encoding="utf-8")):
+                target = target.strip("<>").split("#", 1)[0]
+                if not target or "://" in target or target.startswith("mailto:"):
+                    continue
+                self.assertTrue((document.parent / target).resolve().exists(), f"{document}: {target}")
+
+    def test_no_absolute_local_links_or_raw_html_archive(self):
+        markdown = "\n".join(path.read_text(encoding="utf-8") for path in ROOT.rglob("*.md"))
+        self.assertIsNone(re.search(r"[A-Za-z]:[/\\]Users[/\\]", markdown))
+        self.assertEqual(list(ROOT.rglob("*.html.gz")), [])
+
+    def test_manifest_is_five_language_and_hashes_are_well_formed(self):
+        rows = read_csv("audit/data/source-evidence-manifest.csv")
+        self.assertTrue(rows)
+        self.assertFalse(any("/th/" in f"/{row['relative_path']}" for row in rows))
+        self.assertTrue(all(re.fullmatch(r"[0-9a-f]{64}", row["sha256"]) for row in rows))
+        self.assertTrue(all(row["stored_in_repository"] == "no" for row in rows))
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
