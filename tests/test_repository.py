@@ -65,6 +65,32 @@ class RepositoryTests(unittest.TestCase):
         self.assertEqual(len(failures), 3)
         self.assertTrue(all(row["status"] == 404 for row in failures))
 
+    def test_title_classification_preserves_source_rows(self):
+        classified = read_csv("audit/inventories/title-cause-classification.csv")
+        original = read_csv("audit/inventories/title-locations.csv")
+        key = lambda row: (row["site"], row["url"], row["widget_id"], row["title"])
+        self.assertEqual(len(classified), len(original))
+        self.assertEqual(sorted(map(key, classified)), sorted(map(key, original)))
+        self.assertEqual(len({(r["site"], r["widget_id"]) for r in classified}), 143)
+        self.assertEqual(len({r["url"] for r in classified}), 77)
+        for row in classified:
+            flags = [row[k] for k in ("doctype", "html_open", "head_open", "body_open")]
+            self.assertTrue(all(value in {"true", "false"} for value in flags))
+            expected = ("document_bundle" if all(v == "true" for v in flags)
+                        else "partial_document" if any(v == "true" for v in flags)
+                        else "title_fragment")
+            self.assertEqual(row["shape"], expected)
+
+    def test_title_classification_points_to_existing_evidence(self):
+        widgets = {(r["site"], r["url"], r["widget_id"]): r
+                   for r in read_csv("audit/inventories/code-widget-inventory.csv")}
+        manifest = {r["relative_path"].replace("\\", "/"): r
+                    for r in read_csv("audit/data/source-evidence-manifest.csv")}
+        for row in read_csv("audit/inventories/title-cause-classification.csv"):
+            widget = widgets[(row["site"], row["url"], row["widget_id"])]
+            self.assertEqual(row["rendered_sha256"], widget["sha256"])
+            self.assertEqual(row["source_archive_sha256"], manifest[row["evidence"]]["sha256"])
+
     def test_javascript_result_is_described_as_syntax_only(self):
         result = read_json("audit/data/javascript-syntax-check.json")
         self.assertEqual(result["checked"], 1470)
